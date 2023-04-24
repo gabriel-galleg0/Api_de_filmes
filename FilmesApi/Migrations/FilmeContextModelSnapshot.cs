@@ -33,8 +33,13 @@ partial class FilmeContextModelSnapshot : ModelSnapshot
 
                 b.Property<string>("Genero")
                     .IsRequired()
-                    .HasMaxLength(50)
-                    .HasColumnType("varchar(50)");
+                        .HasMaxLength(20)
+                        .HasColumnType("varchar(20)");
+
+                    b.Property<string>("Sinopse")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("varchar(500)");
 
                 b.Property<string>("Titulo")
                     .IsRequired()
