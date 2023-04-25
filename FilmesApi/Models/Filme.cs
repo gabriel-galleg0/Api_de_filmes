@@ -29,5 +29,7 @@ public class Filme
 
     public string Sinopse { get; set;}
 
+    public virtual ICollection<Sessao> Sessoes { get; set; }
+
 }
     

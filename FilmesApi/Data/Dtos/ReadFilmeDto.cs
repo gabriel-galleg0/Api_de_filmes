@@ -16,5 +16,7 @@ namespace FilmesApi.Data.Dtos
         public string Sinopse { get; set; }
 
         public DateTime HoraConsultada { get; set; } = DateTime.Now;
+
+        public ICollection<ReadSessaoDto> Sessoes { get; set; }
     }
 }

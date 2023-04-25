@@ -31,13 +31,23 @@ public class FilmeController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<ReadFilmeDto> TodosFilmes([FromQuery] int skip = 0, [FromQuery] int take = 50)
+    public IEnumerable<ReadFilmeDto> TodosFilmes
+        ([FromQuery] int skip = 0, 
+        [FromQuery] int take = 50,
+        [FromQuery] string? nomeCinema = null)
     {
-        return _mapper.Map<List<ReadFilmeDto>>(_context.Filmes.Skip(skip).Take(take));
+        if (nomeCinema == null)
+        {
+        return _mapper.Map<List<ReadFilmeDto>>
+                (_context.Filmes.Skip(skip).Take(take).ToList());
+        }
+        return _mapper.Map<List<ReadFilmeDto>>
+              (_context.Filmes.Skip(skip).Take(take)
+              .Where(filme => filme.Sessoes.Any(sessao => sessao.Cinema.Nome == nomeCinema)).ToList());
     }
 
     [HttpGet("{id}")]
-    public IActionResult RecuperarFilmePorId(int id)
+    public IActionResult RecuperarFilmePorId([FromRoute] int id)
     {
         var filme = _context.Filmes.FirstOrDefault(filme => filme.Id == id);
         if (filme == null) return NotFound();
@@ -45,7 +55,7 @@ public class FilmeController : ControllerBase
         return Ok(filmeDto);
     }
     [HttpPut("{id}")]
-    public IActionResult AtualizaFilme(int id, [FromBody]
+    public IActionResult AtualizaFilme([FromRoute]int id, [FromBody]
     UpdateFilmeDto filmeDto)
     {
         var filme = _context.Filmes.FirstOrDefault(
@@ -57,7 +67,7 @@ public class FilmeController : ControllerBase
         }
 
     [HttpPatch("{id}")]
-    public IActionResult AtualizaFilmeParcial(int id,JsonPatchDocument<UpdateFilmeDto> patch )
+    public IActionResult AtualizaFilmeParcial([FromRoute] int id,JsonPatchDocument<UpdateFilmeDto> patch )
     {
         var filme = _context.Filmes.FirstOrDefault(
             filme => filme.Id == id);
@@ -78,7 +88,7 @@ public class FilmeController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    public IActionResult DeletaFilme(int id)
+    public IActionResult DeletaFilme([FromRoute] int id)
     {
         var filme = _context.Filmes.FirstOrDefault(
             filme => filme.Id == id);
