@@ -1,4 +1,11 @@
-# FilmesApi
+<h1> Api de filmes com relacionamento de entidades
 
-## Api em C# com MySQL onde podem ser cadastrados filmes com nomes, gêneros, diretores, duração do filme e uma Sinopse sobre.
-#### Em breve atualizações
+<h3>Api em C# com MySql utilizando o Entity. Onde é possível ter cadastros de:
+<li>
+Endereços<li/>
+Cinemas<li/>
+Sessões<li/>
+Filme.
+
+
+Tendo relações entre todos os itens da lista acima, não podendo "criar" um cinema sem um endereço e uma sessão sem um filme ou um cinema.
