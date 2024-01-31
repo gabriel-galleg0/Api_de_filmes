@@ -8,4 +8,4 @@ Sessões<li/>
 Filme.
 
 
-Tendo relações entre todos os itens da lista acima, não podendo "criar" um cinema sem um endereço e uma sessão sem um filme ou um cinema.
+Tendo relações entre todos os itens da lista acima, não podendo "criar" um cinema sem um endereço cadastrado, e tambem não é permitido a criação de uma sessão sem um filme ou cinema cadastrados.
